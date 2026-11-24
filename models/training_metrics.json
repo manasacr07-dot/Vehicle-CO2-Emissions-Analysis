@@ -1,0 +1,6 @@
+{
+  "rows_after_duplicates_removed": 6282,
+  "r2": 0.9957,
+  "mae_g_km": 2.15,
+  "classification_accuracy": 0.9761
+}

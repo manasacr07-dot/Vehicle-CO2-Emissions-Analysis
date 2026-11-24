@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vehicle CO₂ Emissions</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><nav><a class="brand" href="/">🌿 Vehicle CO₂ Insight</a><div><a href="/">Predictor</a><a href="/about">About</a></div></nav>
+<header class="hero"><p class="eyebrow">DATA SCIENCE • MACHINE LEARNING</p><h1>Understand your vehicle's<br><span>carbon footprint.</span></h1>
+<p>Estimate vehicle CO₂ emissions from engine and fuel-consumption specifications.</p></header>
+<main><section class="panel"><h2>Vehicle details</h2><p class="muted">Enter the specifications to estimate CO₂ emissions.</p>
+<form method="POST" class="form-grid">
+<label>Make<select name="make">{% for x in makes %}<option>{{x}}</option>{% endfor %}</select></label>
+<label>Model<select name="model">{% for x in models %}<option>{{x}}</option>{% endfor %}</select></label>
+<label>Vehicle class<select name="vehicle_class">{% for x in classes %}<option>{{x}}</option>{% endfor %}</select></label>
+<label>Engine size (L)<input name="engine" type="number" min="0.5" max="10" step="0.1" value="2.0" required></label>
+<label>Cylinders<input name="cylinders" type="number" min="2" max="16" step="1" value="4" required></label>
+<label>Transmission<select name="transmission">{% for x in transmissions %}<option>{{x}}</option>{% endfor %}</select></label>
+<label>Fuel type<select name="fuel">{% for x in fuels %}<option>{{x}}</option>{% endfor %}</select></label>
+<label>City consumption (L/100 km)<input name="city" type="number" min="1" max="40" step="0.1" value="9.0" required></label>
+<label>Highway consumption (L/100 km)<input name="highway" type="number" min="1" max="35" step="0.1" value="7.0" required></label>
+<label>Combined consumption (L/100 km)<input name="combined" type="number" min="1" max="40" step="0.1" value="8.1" required></label>
+<label>Combined fuel economy (mpg)<input name="mpg" type="number" min="1" max="100" value="35" required></label>
+<div class="full"><button type="submit">Predict CO₂ emissions →</button></div></form>
+{% if result %}<div class="result"><p class="eyebrow">MODEL ESTIMATE</p><h2>{{result.prediction}} <small>g/km</small></h2><p>Predicted category: <strong>{{result.tier}}</strong></p></div>{% endif %}
+{% if error %}<p class="error">{{error}}</p>{% endif %}
+<p class="note">Estimate only. This is not an official vehicle emissions test or certification.</p></section></main>
+<footer>Vehicle CO₂ Emissions Analysis • Data Science project</footer></body></html>
